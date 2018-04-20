@@ -1,7 +1,9 @@
 <?php
 namespace App\Models;
 
-class Member
+use Illuminate\Database\Eloquent\Model;
+
+class Member extends Model
 {
     public const EMAIL = 'email';
 

@@ -14,7 +14,7 @@ class MemberService
 
     public function __construct(Member $member)
     {
-
+        $this->member = $member;
     }
 
     /**
@@ -25,6 +25,16 @@ class MemberService
      */
     public function create(string $email): void
     {
+        $result = $this->member->where([
+            Member::EMAIL => $email
+        ])->first();
 
+        if (!is_null($result)) {
+            throw new EmailAlreadyExistException();
+        }
+
+        $this->member->create([
+            Member::EMAIL => $email
+        ]);
     }
 }
