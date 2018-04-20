@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
 Route::get('/', 'MemberController@index')->middleware('web');
 Route::post('/lists/create', 'MemberController@create')->middleware('web');

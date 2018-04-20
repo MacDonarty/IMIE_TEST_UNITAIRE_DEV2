@@ -6,7 +6,6 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Exceptions\EmailAlreadyExistException;
-//use App\Exceptions\EmailNotFoundException;
 use App\Models\Member;
 use App\Services\MemberService;
 use Illuminate\Database\Eloquent\Collection;
@@ -14,14 +13,8 @@ use Illuminate\Database\Eloquent\Collection;
 class MemberServiceTest extends TestCase
 {
 
-    /**
-     * @var \Mockery\MockInterface
-     */
     private $memberMocked;
 
-    /**
-     * La méthode "setUp" est appelée à chaque excecution de test
-     */
     public function setUp()
     {
         parent::setUp();
@@ -39,7 +32,7 @@ class MemberServiceTest extends TestCase
     public function testCreate_Success_NominalCase()
     {
         // Arrange
-        $member = 'john.doe@gmail.com';
+        $member = 'john.doe@domain.tld';
 
         // Assert
         $this->memberMocked->shouldReceive('where')
@@ -73,13 +66,11 @@ class MemberServiceTest extends TestCase
      *
      * 2 Points
      */
-
     public function testCreate_ExpectException_ExceptionCase()
     {
         // Arrange
-        $member = 'john.doe@gmail.com';
+        $member = 'john.doe@domain.tld';
 
-        // SELECT name FROM tasks WHERE name = 'First task' LIMIT 1;
         $this->memberMocked->shouldReceive('where')
             ->once()
             ->with([

@@ -9,7 +9,12 @@
 namespace App\Http\Controllers;
 
 
-class MemberController
+use App\Services\MemberService;
+use App\Models\Member;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
+class MemberController extends Controller
 {
     private $memberService;
 
@@ -18,9 +23,7 @@ class MemberController
         $this->memberService = $memberService;
     }
 
-    /**
-     * Il faut retourner à la vue un liste tâches
-     */
+
     public function index(Request $request)
     {
         $members = $this->memberService->lists();
@@ -40,11 +43,12 @@ class MemberController
         if($this->validForm($values, [
             Member::EMAIL => 'required'
         ])) {
+
             return redirect()->action('MemberController@index')
                 ->with('alert', [
                     'message' => 'required_fields',
                     'type' => 'warning'
-                ]);
+                ])->setStatusCode(500);
         }
 
         try {
@@ -52,8 +56,8 @@ class MemberController
         } catch (EmailAlreadyExistException $e) {
             return redirect()->action('MemberController@index')
                 ->with('alert', [
-                    'message' => 'already_exist',
-                    'type' => 'warning'
+                    'message' => 'success_message',
+                    'type' => 'success'
                 ]);
         }
 
@@ -64,7 +68,7 @@ class MemberController
             ]);
     }
 
-    /*private function validForm(array $values, array $rules): bool
+    private function validForm(array $values, array $rules): bool
     {
         $validator = Validator::make($values, $rules);
 
@@ -73,5 +77,5 @@ class MemberController
         }
 
         return false;
-    }*/
+    }
 }

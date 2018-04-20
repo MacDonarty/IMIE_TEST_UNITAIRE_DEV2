@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Exceptions\EmailAlreadyExistException;
 use App\Models\Member;
+use Illuminate\Database\Eloquent\Collection;
 
 class MemberService
 {
@@ -15,6 +16,11 @@ class MemberService
     public function __construct(Member $member)
     {
         $this->member = $member;
+    }
+
+    public function lists(): Collection
+    {
+        return $this->member->all();
     }
 
     /**
