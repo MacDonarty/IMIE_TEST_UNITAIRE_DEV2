@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Exceptions\EmailAlreadyExistException;
 use App\Services\MemberService;
 use App\Models\Member;
 use Illuminate\Http\Request;
