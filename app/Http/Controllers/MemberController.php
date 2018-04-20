@@ -23,7 +23,6 @@ class MemberController extends Controller
         $this->memberService = $memberService;
     }
 
-
     public function index(Request $request)
     {
         $members = $this->memberService->lists();

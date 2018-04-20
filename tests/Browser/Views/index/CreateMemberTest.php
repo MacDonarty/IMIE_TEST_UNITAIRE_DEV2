@@ -8,7 +8,6 @@ use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-
 class CreateMemberTest extends DuskTestCase
 {
     use DatabaseMigrations;
@@ -60,7 +59,6 @@ class CreateMemberTest extends DuskTestCase
                 ->assertVisible('.alert-warning');
         });
      }
-
 
     /**
      * Un visiteur arrive sur la page /

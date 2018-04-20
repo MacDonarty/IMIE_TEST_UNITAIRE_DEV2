@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Collection;
 
 class MemberServiceTest extends TestCase
 {
-
     private $memberMocked;
 
     public function setUp()
